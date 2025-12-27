@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday 🤍</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(135deg, #f6f1eb, #e8dcd0);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: #ffffff;
+  width: 92%;
+  max-width: 420px;
+  border-radius: 22px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  text-align: center;
+  animation: pop 0.6s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+input {
+  padding: 12px;
+  width: 80%;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 22px;
+  border: none;
+  border-radius: 14px;
+  background: #d9b99b;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+h1 {
+  color: #7a5c45;
+}
+
+p {
+  color: #5f4b3a;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.photos img {
+  width: 100%;
+  border-radius: 16px;
+  margin: 14px 0;
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="lock">
+  <h2>🎁 Birthday Surprise</h2>
+  <p>Enter the PIN 🤍</p>
+  <input type="password" id="pin" placeholder="•••">
+  <br>
+  <button onclick="unlock()">Open</button>
+</div>
+
+<div class="container hidden" id="card">
+  <h1>Happy Birthday 🎂🤍</h1>
+
+  <div class="photos">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+  </div>
+
+  <p id="text"></p>
+
+  <button id="musicBtn" onclick="playMusic()">Play Music 🎵</button>
+</div>
+
+<script>
+const message = `Dear Suhani 🤍
+
+Happy Birthday 🎂
+
+I hope today brings you even a small moment of calm or happiness, because you truly deserve that and more.
+
+Over these months, our friendship has meant more to me than I ever expected.
+No pressure. No expectations. Just honesty and care.
+
+I hope this year is gentle with you.
+Happy Birthday 🤍
+
+— always`;
+
+let i = 0;
+
+function unlock() {
+  if (document.getElementById("pin").value === "486") {
+    document.getElementById("lock").classList.add("hidden");
+    document.getElementById("card").classList.remove("hidden");
+    typeText();
+  } else {
+    alert("Wrong PIN 🤍");
+  }
+}
+
+function typeText() {
+  if (i < message.length) {
+    document.getElementById("text").innerHTML += message.charAt(i);
+    i++;
+    setTimeout(typeText, 30);
+  }
+}
+
+function playMusic() {
+  const music = document.getElementById("bgMusic");
+  music.volume = 0.6;
+  music.play();
+}
+</script>
+
+</body>
+</html>
